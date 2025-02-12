@@ -19,4 +19,17 @@ public class CategoriaService {
         var lista = categoriaRepository.findAll();
         return lista;
     }
+       @Transactional(readOnly=true)
+    public Categoria getCategoria(Categoria categoria){
+       categoria = categoriaRepository.findById(categoria.getIdCategoria()).orElse(null);
+        return categoria;
+    }
+       @Transactional
+    public void delete(Categoria categoria){
+        categoriaRepository.delete(categoria);
+    }
+       @Transactional
+    public void save(Categoria categoria){
+        categoriaRepository.save(categoria);
+    }
 }
